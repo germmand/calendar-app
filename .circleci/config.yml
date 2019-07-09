@@ -1,0 +1,59 @@
+version: 2.1
+
+references:
+  wepapp_deps_cache_key: &webapp_deps_cache_key
+    deps1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+  webapp_working_directory: &webapp_working_directory
+    ~/calendar-app
+
+executors:
+  nodeapp-executor:
+    docker:
+      - image: circleci/node:10.15.3
+    working_directory: *webapp_working_directory
+
+jobs:
+  setup-webapp:
+    executor: nodeapp-executor
+    steps:
+      - checkout 
+      - restore_cache:
+          key: *webapp_deps_cache_key
+      - run:
+          name: "Install Dependencies."
+          command: yarn install
+      - save_cache:
+          key: *webapp_deps_cache_key
+          paths:
+            - "./node_modules"
+      - persist_to_workspace:
+          root: *webapp_working_directory
+          paths: .
+  run-webapp-linter:
+    executor: nodeapp-executor
+    steps:
+      - attach_workspace:
+          at: *webapp_working_directory
+      - run:
+          name: "Verify code through linter."
+          command: yarn lint
+  run-webapp-tests:
+    executor: nodeapp-executor
+    steps:
+      - attach_workspace: 
+          at: *webapp_working_directory
+      - run:
+          name: "Run unit tests."
+          command: yarn test
+
+workflows:
+  version: 2.1
+  webapp_lint_and_test:
+    jobs:
+      - setup-webapp
+      - run-webapp-linter:
+          requires:
+            - setup-webapp
+      - run-webapp-tests:
+          requires:
+            - setup-webapp
