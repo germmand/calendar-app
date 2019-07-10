@@ -71,6 +71,11 @@ header #logo .icon {
   max-width: 50em;
 }*/
 
+main {
+  margin-top: 1em;
+  padding: 0 1em 0 1em;
+}
+
 /* GRID */
 
 .row {
