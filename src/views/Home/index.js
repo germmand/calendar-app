@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Calendar from '../../components/Calendar';
+import Reminders from '../../components/Reminders';
 
 class Home extends React.Component {
   constructor(props) {
@@ -11,7 +12,14 @@ class Home extends React.Component {
 
   render() {
     return (
-        <Calendar />
+        <div>
+            <div>
+                <Calendar />
+            </div>
+            <div>
+                <Reminders />
+            </div>
+        </div>
     );
   }
 }
