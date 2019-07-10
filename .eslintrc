@@ -12,9 +12,13 @@
     "node": true,
     "jest": true
   },
+  "parser": "babel-eslint",
   "rules": {
     "react/jsx-filename-extension": [1, {"extensions": [".js"]}],
     "import/no-named-as-default": 0,
-    "no-param-reassign": ["error", { "props": false }]
+    "no-param-reassign": ["error", { "props": false }],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off"
   }
 }
