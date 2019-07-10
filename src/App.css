@@ -64,12 +64,12 @@ header #logo .icon {
   padding-right: 0.25em;
 }
 
-main {
+/*main {
   display: block;
   margin: 0 auto;
   margin-top: 5em;
   max-width: 50em;
-}
+}*/
 
 /* GRID */
 
@@ -191,7 +191,7 @@ main {
   font-size: 82.5%;
   line-height: 1;
   top: 0.75em;
-  right: 0.75em;
+  left: 0.75em;
   font-weight: 700;
 }
 

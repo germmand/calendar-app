@@ -1,5 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
+import { withStyles } from '@material-ui/core/styles';
+
+import styles from './styles';
 
 class Calendar extends React.Component {
   state = {
@@ -28,6 +32,7 @@ class Calendar extends React.Component {
   };
 
   renderCells() {
+    const { classes } = this.props;
     const { currentMonth, selectedDate } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
@@ -75,6 +80,7 @@ class Calendar extends React.Component {
     const dateFormat = 'dddd';
     const days = [];
     const { currentMonth } = this.state;
+    const { classes } = this.props;
 
     const startDate = dateFns.startOfWeek(currentMonth);
 
@@ -92,6 +98,7 @@ class Calendar extends React.Component {
   renderHeader() {
     const dateFormat = 'MMMM YYYY';
     const { currentMonth } = this.state;
+    const { classes } = this.props;
 
     return (
       <div className="header row flex-middle">
@@ -111,6 +118,7 @@ class Calendar extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     return (
       <div className="calendar">
         {this.renderHeader()}
@@ -121,4 +129,8 @@ class Calendar extends React.Component {
   }
 }
 
-export default Calendar;
+Calendar.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
+export default withStyles(styles)(Calendar);

@@ -1,11 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
 
 class Reminders extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
+    const { classes } = this.props;
     return (
-      <h2> Reminders rendered </h2>
+      <div>Reminders rendered</div>
     );
-  }  
+  }
 }
 
-export default Reminders;
+Reminders.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
+
+export default withStyles(styles)(Reminders);
