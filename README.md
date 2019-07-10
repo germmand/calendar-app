@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Calendar-App · [![CircleCI](https://circleci.com/gh/germmand/calendar-app.svg?style=shield)](https://circleci.com/gh/germmand/calendar-app)
 
-## Available Scripts
+Calendar-App is a POC (Proof-of-concept) application that allows users to set reminders within a calendar.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Clone the repository using git:
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+$ git clone --depth 1 git@github.com:germmand/calendar-app.git
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Or if using https:
 
-### `npm test`
+```bash
+$ git clone --depth 1 https://github.com/germmand/calendar-app.git
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Cd into the project folder to install its dependencies using the [yarn](https://yarnpkg.com/en/) package manager:
 
-### `npm run build`
+```bash
+cd calendar-app && yarn install
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Finally you just need to start the project by running:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```bash
+$ yarn start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+And that's it, the application should be running on port 3000 now. :)
+Visit: 
 
-### `npm run eject`
+`http://localhost:3000/` 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+and you're good to go.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Optional · Running tests and checking for linting errors.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To run the test suite, simply run in the project folder:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+$ yarn test
+```
 
-## Learn More
+If you have modified the source code, you can check for linting errors, by simply running:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+$ yarn lint
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If some errors were encountered during the linting proccess and some of them can be fixed automatically you can run:
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+$ yarn lintfix
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+And [Prettier](https://prettier.io/) will take care of it for you. :)
