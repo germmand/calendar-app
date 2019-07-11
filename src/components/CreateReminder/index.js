@@ -27,9 +27,10 @@ class CreateReminder extends React.Component {
   }
 
   onSubmitForm = () => {
-    const { onCreate } = this.props;
+    const { onCreate, handleClose } = this.props;
     const { values } = this.state;
     onCreate(values);
+    handleClose();
   }
 
   render() {

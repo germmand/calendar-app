@@ -3,7 +3,7 @@ import remindersConstants from '../constants/reminders.constants';
 const onCreateReminder = reminder => (dispatch) => {
   const action = {
     type: remindersConstants.CREATE_REMINDER,
-    reminder,
+    payload: { reminder },
   };
   dispatch(action);
 };
@@ -11,7 +11,7 @@ const onCreateReminder = reminder => (dispatch) => {
 const onUpdateReminder = reminder => (dispatch) => {
   const action = {
     type: remindersConstants.UPDATE_REMINDER,
-    reminder,
+    payload: { reminder },
   };
   dispatch(action);
 };
@@ -19,7 +19,7 @@ const onUpdateReminder = reminder => (dispatch) => {
 const onDeleteReminder = reminder => (dispatch) => {
   const action = {
     type: remindersConstants.DELETE_REMINDER,
-    reminder,
+    payload: { reminder },
   };
   dispatch(action);
 };

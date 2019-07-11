@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import uuidv1 from 'uuid/v1';
+
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -38,7 +40,15 @@ class Reminders extends React.Component {
     });
   }
 
-  onReminderCreatedTriggered = (/* values */) => {
+  onReminderCreatedTriggered = values => {
+    const { selectedDate, onCreateReminder } = this.props;
+    const reminder = {
+      id: uuidv1(),
+      text: values.reminderText,
+      time: values.reminderTime,
+      selectedDate: selectedDate,
+    };
+    onCreateReminder(reminder);
   }
 
   render() {
