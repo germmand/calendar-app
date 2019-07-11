@@ -1,38 +1,30 @@
 import React from 'react';
 import dateFns from 'date-fns';
 
+import calendarActions from '../../store/actions/calendar.actions';
+
 import { connect } from 'react-redux';
 
 // import styles from './styles';
 
 class Calendar extends React.Component {
-  state = {
-    currentMonth: new Date(),
-    selectedDate: new Date(),
-  };
-
   nextMonth = () => {
-    const { currentMonth } = this.state;
-    this.setState({
-      currentMonth: dateFns.addMonths(currentMonth, 1),
-    });
+    const { currentMonth, onChangeMonth } = this.props;
+    onChangeMonth(dateFns.addMonths(currentMonth, 1));
   };
 
   prevMonth = () => {
-    const { currentMonth } = this.state;
-    this.setState({
-      currentMonth: dateFns.subMonths(currentMonth, 1),
-    });
+    const { currentMonth, onChangeMonth } = this.props;
+    onChangeMonth(dateFns.subMonths(currentMonth, 1));
   };
 
   onDateClick = (day) => {
-    this.setState({
-      selectedDate: day,
-    });
+    const { onChangeSelectedDate } = this.props;
+    onChangeSelectedDate(day);
   };
 
   renderCells() {
-    const { currentMonth, selectedDate } = this.state;
+    const { currentMonth, selectedDate } = this.props;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
     const startDate = dateFns.startOfWeek(monthStart);
@@ -78,7 +70,7 @@ class Calendar extends React.Component {
   renderDays() {
     const dateFormat = 'dddd';
     const days = [];
-    const { currentMonth } = this.state;
+    const { currentMonth } = this.props;
 
     const startDate = dateFns.startOfWeek(currentMonth);
 
@@ -95,7 +87,7 @@ class Calendar extends React.Component {
 
   renderHeader() {
     const dateFormat = 'MMMM YYYY';
-    const { currentMonth } = this.state;
+    const { currentMonth } = this.props;
 
     return (
       <div className="header row flex-middle">
@@ -125,10 +117,14 @@ class Calendar extends React.Component {
   }
 }
 
-const mapStateToProps = (/* state */) => ({
+const mapStateToProps = state => ({
+  selectedDate: state.calendar.selectedDate,
+  currentMonth: state.calendar.currentMonth,
 });
 
-const mapDispatchToProps = (/* dispatch */) => ({
+const mapDispatchToProps = dispatch => ({
+  onChangeMonth: month => dispatch(calendarActions.onChangeCurrentMonth(month)),
+  onChangeSelectedDate: date => dispatch(calendarActions.onChangeSelectedDate(date)),
 });
 
 export default connect(
