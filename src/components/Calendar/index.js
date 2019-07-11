@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
+import { connect } from 'react-redux';
 import calendarActions from '../../store/actions/calendar.actions';
 
-import { connect } from 'react-redux';
 
 // import styles from './styles';
 
@@ -126,6 +127,13 @@ const mapDispatchToProps = dispatch => ({
   onChangeMonth: month => dispatch(calendarActions.onChangeCurrentMonth(month)),
   onChangeSelectedDate: date => dispatch(calendarActions.onChangeSelectedDate(date)),
 });
+
+Calendar.propTypes = {
+  onChangeMonth: PropTypes.func.isRequired,
+  onChangeSelectedDate: PropTypes.func.isRequired,
+  selectedDate: PropTypes.string.isRequired,
+  currentMonth: PropTypes.string.isRequired,
+};
 
 export default connect(
   mapStateToProps,
