@@ -10,35 +10,61 @@ import Divider from '@material-ui/core/Divider';
 
 import { withStyles } from '@material-ui/styles';
 import Reminder from '../Reminder';
+import CreateReminder from '../CreateReminder';
 
 import styles from './styles';
 
 class Reminders extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      openCreateReminder: false,
+    };
+  }
+
+  onCreateReminderClicked = () => {
+    this.setState({
+      openCreateReminder: true,
+    });
+  }
+
+  onCreateReminderClose = () => {
+    this.setState({
+      openCreateReminder: false,
+    });
+  }
+
+  onReminderCreatedTriggered = (/* values */) => {
   }
 
   render() {
     const { classes } = this.props;
+    const { openCreateReminder } = this.state;
 
     return (
-      <Card>
-        <CardHeader title="Reminders" />
-        <Divider />
+      <div>
+        <Card>
+          <CardHeader title="Reminders" />
+          <Divider />
 
-        <CardContent className={classes.cardContent}>
+          <CardContent className={classes.cardContent}>
             <Reminder text="Terminar esto..." date="10/07/2019"/>
             <Reminder text="Leer 'Gettings Things Done' de David Allen..." date="12/07/2019"/>
-        </CardContent>
+          </CardContent>
 
-        <Divider />
-        <CardActions>
-          <Button size="small" color="primary">
-            Create Reminder
-          </Button>
-        </CardActions>
-      </Card>
+          <Divider />
+          <CardActions>
+            <Button size="small" color="primary" onClick={this.onCreateReminderClicked}>
+              Create Reminder
+            </Button>
+          </CardActions>
+        </Card>
+        <CreateReminder
+          isOpen={openCreateReminder}
+          handleClose={this.onCreateReminderClose}
+          onCreate={this.onReminderCreatedTriggered}
+        />
+      </div>
     );
   }
 }
