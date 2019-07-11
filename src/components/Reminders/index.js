@@ -14,6 +14,8 @@ import { withStyles } from '@material-ui/styles';
 import Reminder from '../Reminder';
 import CreateReminder from '../CreateReminder';
 
+import remindersActions from '../../store/actions/reminders.actions';
+
 import styles from './styles';
 
 class Reminders extends React.Component {
@@ -73,12 +75,22 @@ class Reminders extends React.Component {
 
 Reminders.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  reminders: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  selectedDate: PropTypes.string.isRequired,
+  onCreateReminder: PropTypes.func.isRequired,
+  onUpdateReminder: PropTypes.func.isRequired,
+  onDeleteReminder: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (/* state */) => ({
+const mapStateToProps = state => ({
+  reminders: state.reminders.reminders,
+  selectedDate: state.calendar.selectedDate,
 });
 
-const mapDispatchToProps = (/* dispatch */) => ({
+const mapDispatchToProps = dispatch => ({
+  onCreateReminder: reminder => dispatch(remindersActions.onCreateReminder(reminder)),
+  onUpdateReminder: reminder => dispatch(remindersActions.onUpdateReminder(reminder)),
+  onDeleteReminder: reminder => dispatch(remindersActions.onDeleteReminder(reminder)),
 });
 
 export default connect(
