@@ -1,5 +1,7 @@
-import remindersAction from './reminders.actions';
+import remindersActions from './reminders.actions';
+import calendarActions from './calendar.actions';
 
 export default {
-  remindersAction,
+  remindersActions,
+  calendarActions,
 };

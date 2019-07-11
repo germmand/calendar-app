@@ -1,6 +1,8 @@
 import React from 'react';
 import dateFns from 'date-fns';
 
+import { connect } from 'react-redux';
+
 // import styles from './styles';
 
 class Calendar extends React.Component {
@@ -123,4 +125,13 @@ class Calendar extends React.Component {
   }
 }
 
-export default Calendar;
+const mapStateToProps = (/* state */) => ({
+});
+
+const mapDispatchToProps = (/* dispatch */) => ({
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Calendar);

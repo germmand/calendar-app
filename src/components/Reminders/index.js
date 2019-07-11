@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Divider from '@material-ui/core/Divider';
 
+import { connect } from 'react-redux';
+
 import { withStyles } from '@material-ui/styles';
 import Reminder from '../Reminder';
 import CreateReminder from '../CreateReminder';
@@ -73,4 +75,13 @@ Reminders.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default withStyles(styles)(Reminders);
+const mapStateToProps = (/* state */) => ({
+});
+
+const mapDispatchToProps = (/* dispatch */) => ({
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(Reminders));
