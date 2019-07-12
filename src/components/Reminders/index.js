@@ -40,19 +40,25 @@ class Reminders extends React.Component {
     });
   }
 
-  onReminderCreatedTriggered = values => {
+  onDeleteReminder = reminder => {
+  }
+
+  onUpdateReminder = reminder => {
+  }
+
+  onReminderCreatedTriggered = (values) => {
     const { selectedDate, onCreateReminder } = this.props;
     const reminder = {
       id: uuidv1(),
       text: values.reminderText,
       time: values.reminderTime,
-      selectedDate: selectedDate,
+      selectedDate,
     };
     onCreateReminder(reminder);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, reminders } = this.props;
     const { openCreateReminder } = this.state;
 
     return (
@@ -62,8 +68,16 @@ class Reminders extends React.Component {
           <Divider />
 
           <CardContent className={classes.cardContent}>
-            <Reminder text="Terminar esto..." date="10/07/2019"/>
-            <Reminder text="Leer 'Gettings Things Done' de David Allen..." date="12/07/2019"/>
+            {
+              reminders.map(reminder => 
+                <Reminder 
+                  key={reminder.id}
+                  reminder={reminder} 
+                  onDelete={this.onDeleteReminder}
+                  onUpdate={this.onUpdateReminder}
+                />
+              )
+            }
           </CardContent>
 
           <Divider />
@@ -85,7 +99,7 @@ class Reminders extends React.Component {
 
 Reminders.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  reminders: PropTypes.arrayOf(PropTypes.obj).isRequired,
+  reminders: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedDate: PropTypes.string.isRequired,
   onCreateReminder: PropTypes.func.isRequired,
   onUpdateReminder: PropTypes.func.isRequired,
