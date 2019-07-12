@@ -20,6 +20,18 @@ class ReminderManager extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const { isUpdate, reminder } = this.props;
+    if (isUpdate) {
+      this.setState({
+        values: {
+          reminderText: reminder.text,
+          reminderTime: reminder.time,
+        },
+      });
+    }
+  }
+
   onChangeField = (field, value) => {
     const newState = { ...this.state };
     newState.values[field] = value;
