@@ -19,7 +19,7 @@ describe('onCreateReminder action', () => {
       id: 'dummy-id',
       text: 'dummy-test',
       time: '15:04',
-      selectedDate: new Date(2019, 8, 15), 
+      selectedDate: new Date(2019, 8, 15),
     };
     store.dispatch(onCreateReminder(reminder));
     const expectedPayload = {
@@ -47,7 +47,7 @@ describe('onUpdateReminder action', () => {
       id: 'dummy-id',
       text: 'dummy-test',
       time: '15:04',
-      selectedDate: new Date(2019, 8, 15), 
+      selectedDate: new Date(2019, 8, 15),
     };
     store.dispatch(onUpdateReminder(reminder));
     const expectedPayload = {
@@ -75,7 +75,7 @@ describe('onDeleteReminder action', () => {
       id: 'dummy-id',
       text: 'dummy-test',
       time: '15:04',
-      selectedDate: new Date(2019, 8, 15), 
+      selectedDate: new Date(2019, 8, 15),
     };
     store.dispatch(onDeleteReminder(reminder));
     const expectedPayload = {
