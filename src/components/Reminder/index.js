@@ -12,7 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles';
 
-const Reminder = ({ reminder, classes, onDelete, onUpdate }) => (
+const Reminder = ({
+  reminder, classes, onDelete, onUpdate,
+}) => (
     <Card className={classes.card}>
         <CardContent>
             <Typography gutterBottom variant="body2" component="p" className={classes.text}>
@@ -24,17 +26,17 @@ const Reminder = ({ reminder, classes, onDelete, onUpdate }) => (
         </CardContent>
         <Divider variant="middle"/>
         <CardActions>
-            <IconButton 
-              color="secondary" 
-              aria-label="Delete Reminder" 
-              onClick={() => { onDelete(reminder) }}
+            <IconButton
+              color="secondary"
+              aria-label="Delete Reminder"
+              onClick={() => { onDelete(reminder); }}
             >
                 <Icon>delete</Icon>
             </IconButton>
-            <IconButton 
-              color="primary" 
-              aria-label="Edit Reminder" 
-              onClick={() => { onUpdate(reminder)}}
+            <IconButton
+              color="primary"
+              aria-label="Edit Reminder"
+              onClick={() => { onUpdate(reminder); }}
             >
                 <Icon>edit</Icon>
             </IconButton>
