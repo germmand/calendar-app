@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles';
 import Reminder from '../Reminder';
-import CreateReminder from '../CreateReminder';
+import ReminderManager from '../ReminderManager';
 
 import remindersActions from '../../store/actions/reminders.actions';
 
@@ -98,7 +98,7 @@ class Reminders extends React.Component {
             </Button>
           </CardActions>
         </Card>
-        <CreateReminder
+        <ReminderManager
           isOpen={openCreateReminder}
           handleClose={this.onCreateReminderClose}
           onCreate={this.onReminderCreatedTriggered}

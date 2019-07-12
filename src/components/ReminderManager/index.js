@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles';
 
-class CreateReminder extends React.Component {
+class ReminderManager extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,19 +27,31 @@ class CreateReminder extends React.Component {
   }
 
   onSubmitForm = () => {
-    const { onCreate, handleClose } = this.props;
+    const { onCreate, handleClose, isUpdate } = this.props;
     const { values } = this.state;
-    onCreate(values);
+    if (!isUpdate) {
+      onCreate(values);
+    } else {
+      const { reminder, onUpdate } = this.props;
+      const updatedReminder = {
+        ...reminder,
+        text: values.reminderText,
+        time: values.reminderTime,
+      };
+      onUpdate(updatedReminder);
+    }
     handleClose();
   }
 
   render() {
-    const { isOpen, handleClose, classes } = this.props;
+    const {
+      isUpdate, isOpen, handleClose, classes,
+    } = this.props;
     const { values } = this.state;
 
     return (
       <Dialog open={isOpen} onClose={handleClose} aria-labelledby="create-reminder-dialog">
-        <DialogTitle id="create-reminder-dialog">Create Reminder</DialogTitle>
+        <DialogTitle id="create-reminder-dialog">{ isUpdate ? 'Update' : 'Create' } Reminder</DialogTitle>
         <form className={classes.container}>
           <TextField
             id="reminder-text"
@@ -72,7 +84,7 @@ class CreateReminder extends React.Component {
             className={classes.button}
             onClick={this.onSubmitForm}
           >
-            Create
+            {isUpdate ? 'Update' : 'Create'}
           </Button>
           <Button
             variant="outlined"
@@ -89,11 +101,26 @@ class CreateReminder extends React.Component {
   }
 }
 
-CreateReminder.propTypes = {
+ReminderManager.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  onCreate: PropTypes.func.isRequired,
+  isUpdate: PropTypes.bool,
+  onUpdate: PropTypes.func,
+  onCreate: PropTypes.func,
+  reminder: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    selectedDate: PropTypes.string.isRequired,
+  }),
 };
 
-export default withStyles(styles)(CreateReminder);
+ReminderManager.defaultProps = {
+  isUpdate: false,
+  onUpdate: () => { },
+  onCreate: () => { },
+  reminder: undefined,
+};
+
+export default withStyles(styles)(ReminderManager);
